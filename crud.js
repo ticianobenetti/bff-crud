@@ -1,7 +1,4 @@
 
-// API version
-const api_ver = "1.0"
-
 // Operation switch
 var operation_switch = 'SELECT'
 
@@ -24,7 +21,7 @@ init_DOM();
 function loadSelect() {
 
     // Compose URL
-    var names_endpoint = "/api/crud/"+api_ver+"/names"
+    var names_endpoint = "/api/crud/names"
 
     var html_select = '<select id="select_name" size="4">';
     axios.get( names_endpoint )
@@ -72,7 +69,7 @@ function loadRecord() {
     enableButtons();
     
     // Compose URL
-    var fetch_endpoint = "/api/crud/"+api_ver+"/fetch"
+    var fetch_endpoint = "/api/crud/fetch"
 
     form_data = { 'name':select_name.value };
 
@@ -109,7 +106,7 @@ function clearForm() {
 function submitUpdate() {
 
     // Compose URL
-    var update_endpoint = "/api/crud/"+api_ver+"/update"
+    var update_endpoint = "/api/crud/update"
     
     var form_data = {};
     form_data['name']=select_name.value;
@@ -150,7 +147,7 @@ function submitRemove() {
     enableButtons();
     
     // Compose URL
-    var remove_endpoint = "/api/crud/"+api_ver+"/remove"
+    var remove_endpoint = "/api/crud/remove"
 
     form_data = { 'name':select_name.value };
 
@@ -180,7 +177,7 @@ function submitRemove() {
 function submitCreate() {
 
     // Compose URL
-    var create_endpoint = "/api/crud/"+api_ver+"/create"
+    var create_endpoint = "/api/crud/create"
     
     p_status.innerHTML = "Submitting form...<img width=13 src=/images/activity_indicator.gif>";
 
