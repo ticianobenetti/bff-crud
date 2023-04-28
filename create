@@ -1,0 +1,45 @@
+import json
+
+response_data = {}
+
+def application(environ,start_response):
+
+    # Load request body into json
+    post_data = json.load(environ['wsgi.input'])
+
+    # Call main function
+    do_execute( post_data['name'], post_data['age'], post_data['phone'] )
+
+    # Prepare response
+    status = '200 OK'
+    response_header = [('Content-type','application/json')]
+
+    # Respond to client
+    start_response(status,response_header)
+    return [bytes(json.dumps(response_data),'utf-8')]
+
+def do_execute(name, age, phone):
+    
+    data_file = '/var/crud/crud.db'
+    try:
+        fd = open( data_file, 'r' )
+        db = json.load( fd )
+        fd.close()
+    except:
+        db = {}
+
+
+    if name in db.keys():
+
+        response_data['message'] = '<b>'+name+'</b> already exists.'
+
+    else:
+        
+        new_record = { 'age': age, 'phone':phone } 
+        db[name] = new_record
+    
+        fd = open( data_file, 'w' )
+        json.dump( db, fd )
+        fd.close()
+    
+        response_data['message'] = 'Record created for <b>'+name+'</b>'

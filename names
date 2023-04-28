@@ -1,0 +1,36 @@
+import json
+
+response_data = {}
+
+def application(environ,start_response):
+
+    # Call main function
+    do_execute()
+
+    # Prepare response
+    status = '200 OK'
+    response_header = [('Content-type','application/json')]
+
+    # Respond to client
+    start_response(status,response_header)
+    return [bytes(json.dumps(response_data),'utf-8')]
+
+def do_execute():
+    
+    data_file = '/var/crud/crud.db'
+    name_list = []
+    
+    try:
+        fd = open( data_file, 'r' )
+        db = json.load( fd )
+        fd.close()
+    except:
+        db = {}
+
+    for item in db.keys():
+        name_list.append(item)
+
+    name_list.sort()
+    
+    response_data['message'] = 'Database has <b>'+str(len(name_list))+'</b> items.'
+    response_data['names'] = name_list

@@ -1,0 +1,50 @@
+import json
+
+response_data = {}
+
+def application(environ,start_response):
+
+    # Load request body into json
+    post_data = json.load(environ['wsgi.input'])
+
+    # Call main function
+    do_execute( post_data['name'], post_data['new_name'], post_data['new_age'], post_data['new_phone'] )
+
+    # Prepare response
+    status = '200 OK'
+    response_header = [('Content-type','application/json')]
+
+    # Respond to client
+    start_response(status,response_header)
+    return [bytes(json.dumps(response_data),'utf-8')]
+
+def do_execute(name, new_name, new_age, new_phone):
+    
+    data_file = '/var/crud/crud.db'
+    try:
+        fd = open( data_file, 'r' )
+        db = json.load( fd )
+        fd.close()
+    except:
+        db = {}
+
+
+    if name in db.keys():
+
+        if name == new_name:
+            db[name]['age'] = new_age
+            db[name]['phone'] = new_phone
+
+        else:
+            del db[name]
+            db[new_name] = { 'age':new_age, 'phone':new_phone }
+    
+        fd = open( data_file, 'w' )
+        json.dump( db, fd )
+        fd.close()
+        response_data['message'] = 'Record updated successfully.'
+
+    else:
+        
+    
+        response_data['message'] = 'Could not update record.'

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CRUD BFF Application</title>
+</head>
+<body>
+  <center>
+    
+    <table border=0>
+      <tr>
+	<td align=center width=1000><h1>CRUD BFF 1.1</h1></td>
+	<td align=right width=40><a href=/><img src=/images/home_ico.jpg border=0 width=40></a></td>
+      </tr>
+      <tr>
+        <td rowspan="2" align=center>
+
+	  <table border=1>
+	    <tr>
+
+	      <td align=center width=520>
+
+		<h2>Operations Panel</h2>
+		
+		<form>
+		  <table border=0><tr>
+		      <td align=center>&nbsp;&nbsp;</td>
+		      <td><p id="p_select"></p></td>
+		      <td>
+			<table border=0>
+			  <tr>
+			    <td align=right>Name:</td>
+			    <td><input id="input_name" placeholder="First and last name" type="text" size="30" maxlengtht="50"></td>
+			  </tr>
+			  <tr>
+			    <td align=right>Age:</td>
+			    <td><input id="input_age" type="text" size="2" maxlengtht="2"></td>
+			  </tr>
+			  <tr>
+			    <td align=right>Phone:</td>
+			    <td><input id="input_phone" placeholder="Mobile phone" type="text" size="15" maxlengtht="20"></td>
+			  </tr>
+			</table>
+		      </td>
+		      <td align=center>&nbsp;&nbsp;</td>
+		      <td align=center>
+			<button id="button_create" type="button" style="min-width: 90px; min-height: 20px" disabled>CREATE</button><br><br>
+			<button id="button_new" type="button" style="min-width: 90px; min-height: 20px" disabled>CLEAR</button>
+		      </td>
+		      <td align=center>&nbsp;&nbsp;</td>
+		      <td align=center>
+			<button id="button_remove" type="button" style="min-width: 90px; min-height: 20px" disabled>REMOVE</button><br><br>
+			<button id="button_update" type="button" style="min-width: 90px; min-height: 20px" disabled>UPDATE</button>
+		      </td>
+		      <td align=center>&nbsp;&nbsp;</td>
+		  </tr></table>		  
+		</form>
+
+		<center>
+		  <table border=0>
+		    <tr>
+		      <td><b>STATUS:</b></td><td width=300 style="color: green"><p id="status">Waiting action...</p></td>
+		    </tr>
+		  </table>
+		</center>
+	      </td>
+
+	    </tr>
+
+	</td>
+      </tr>
+  </table>
+
+      
+  </center>
+<script src="/lib/axios.min.js"></script>
+<script src="crud.js"></script>
+</body>
+</html>
