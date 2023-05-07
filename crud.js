@@ -12,11 +12,20 @@ var button_create = document.getElementById("button_create");
 var button_remove = document.getElementById("button_remove");
 var button_update = document.getElementById("button_update");
 var p_status = document.getElementById("status");
+var div_progress = document.getElementById("progress");
 var select_name = '';
 
 loadSelect();
 
 init_DOM();
+
+function showProgress() {
+    div_progress.style.visibility = 'visible';
+}
+
+function hideProgress() {
+    div_progress.style.visibility = 'hidden';
+}
 
 function loadSelect() {
 
@@ -24,6 +33,8 @@ function loadSelect() {
     var names_endpoint = "/api/crud/names"
 
     var html_select = '<select id="select_name" size="4">';
+
+    showProgress();
     axios.get( names_endpoint )
 
 	.then(function (response) {
