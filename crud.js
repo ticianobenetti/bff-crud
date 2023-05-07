@@ -51,6 +51,7 @@ function loadSelect() {
 
 	.finally(function () { // always executed
 	    
+	    hideProgress();
 	    html_select += '</select>\n';
 	    p_select.innerHTML = html_select;
 	    select_name = document.getElementById("select_name");
