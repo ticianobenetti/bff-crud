@@ -85,6 +85,7 @@ function loadRecord() {
 
     form_data = { 'name':select_name.value };
 
+    showProgress();
     axios.post( fetch_endpoint, form_data )  
 
 	.then(function (response) {
@@ -102,6 +103,7 @@ function loadRecord() {
     
 	.finally(function () {
 	    // always executed
+	    hideProgress();
 	});
 }
 
@@ -126,6 +128,7 @@ function submitUpdate() {
     form_data['new_age']=input_age.value;
     form_data['new_phone']=input_phone.value;
 
+    showProgress();
     axios.post( update_endpoint, form_data )  
 
 	.then(function (response) {
@@ -141,6 +144,7 @@ function submitUpdate() {
     
 	.finally(function () {
 	    // always executed
+	    hideProgress();
 	});
 
     clearForm();
@@ -163,6 +167,7 @@ function submitRemove() {
 
     form_data = { 'name':select_name.value };
 
+    showProgress();
     axios.post( remove_endpoint, form_data )  
 
 	.then(function (response) {
@@ -177,6 +182,7 @@ function submitRemove() {
     
 	.finally(function () {
 	    // always executed
+	    hideProgress();
 	});
 
     loadSelect();
@@ -198,6 +204,7 @@ function submitCreate() {
     form_data['age']=input_age.value;
     form_data['phone']=input_phone.value;
 
+    showProgress();
     axios.post( create_endpoint, form_data )  
 
 	.then(function (response) {
@@ -213,6 +220,7 @@ function submitCreate() {
     
 	.finally(function () {
 	    // always executed
+	    hideProgress();
 	});
 
     clearForm();
