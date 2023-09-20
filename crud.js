@@ -136,6 +136,7 @@ function submitUpdate() {
 	    // handle sucess	    
 	    data = response.data;
 	    p_status.innerHTML = data['message']
+	    console.log(response.status)
 	    if (response.status == 'SUCCESS') {
 		loadSelect();
 		clearForm();
