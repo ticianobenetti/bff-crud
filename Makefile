@@ -4,7 +4,7 @@ PATH_FRONTEND=/var/www/html/crud
 default: all
 
 all: backend frontend
-	git commit -a -m "Just another commit"
+	git commit -a -m "Fixed synchronization of update/create/remove to load"
 	git push --set-upstream origin HEAD
 
 backend: $(PATH_BACKEND)/names $(PATH_BACKEND)/remove $(PATH_BACKEND)/update $(PATH_BACKEND)/fetch

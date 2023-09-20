@@ -30,8 +30,6 @@ function hideProgress() {
 
 function loadSelect() {
 
-    console.log("loadSelect() chamado");
-    
     // Compose URL
     var names_endpoint = "/api/crud/names"
 
@@ -39,7 +37,6 @@ function loadSelect() {
 
     // Clear select
     while ( select_name.options.length ) {
-	console.log("Removing from "+select_name.options.length+": "+select_name.options[0].value)
 	select_name.remove(0);
     }
 
@@ -48,13 +45,10 @@ function loadSelect() {
 	.then(function (response) {
 	    // handle success
 	    data = response.data;
-	    console.log("Starting foreach");
 	    data['names'].forEach((name) => {
-		console.log("Adding "+name)
 		newOption = new Option( name, name ); // novo
 		select_name.add(newOption,undefined); // novo
 	    });
-	    console.log("End foreach");
 	})
 
 	.catch(function (error) { // handle error
