@@ -1,1 +1,1 @@
-Fixed collision in name update
+Makefile fixed to separate build from publish to git.

@@ -4,6 +4,8 @@ WHATSNEW != cat WHATSNEW
 default: all
 
 all: backend frontend
+
+git: clean
 	git commit -a -m "$(WHATSNEW)"
 	git push --set-upstream origin HEAD
 
