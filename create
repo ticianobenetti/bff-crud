@@ -32,7 +32,8 @@ def do_execute(name, age, phone):
     if name in db.keys():
 
         response_data['message'] = '<b>'+name+'</b> already exists.'
-
+        response_data['ret'] = 'ERROR'
+        
     else:
         
         new_record = { 'age': age, 'phone':phone } 
@@ -43,3 +44,4 @@ def do_execute(name, age, phone):
         fd.close()
     
         response_data['message'] = 'Record created for <b>'+name+'</b>'
+        response_data['ret'] = 'SUCCESS'

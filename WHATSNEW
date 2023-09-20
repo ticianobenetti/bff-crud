@@ -1,1 +1,1 @@
-Makefile fixed to separate build from publish to git.
+Fixed collision in create and bug in Makefile

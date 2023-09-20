@@ -173,6 +173,10 @@ function submitRemove() {
 	    // handle sucess	    
 	    data = response.data;
 	    p_status.innerHTML = data['message']
+	    if (data['ret'] == 'SUCCESS') {
+		loadSelect();
+		clearForm();
+	    }
 	})
     
 	.catch(function (error) { // handle error
@@ -182,8 +186,6 @@ function submitRemove() {
 	.finally(function () {
 	    // always executed
 	    hideProgress();
-	    loadSelect();
-	    clearForm();
 	});
 }
 
@@ -205,7 +207,15 @@ function submitCreate() {
 	.then(function (response) {
 	    // handle sucess	    
 	    data = response.data;
-	    p_status.innerHTML = data['message']
+	    p_status.innerHTML = data['message'];
+
+	    console.log(data['ret']);
+	    if (data['ret'] == 'SUCCESS') {
+		clearForm();
+		operation_switch = 'SELECT';
+		loadSelect();
+		enableButtons();
+	    }
 	})
     
 	.catch(function (error) {
@@ -216,10 +226,6 @@ function submitCreate() {
 	.finally(function () {
 	    // always executed
 	    hideProgress();
-	    clearForm();
-	    operation_switch = 'SELECT';
-	    enableButtons();
-	    loadSelect();
 	});
 }
 

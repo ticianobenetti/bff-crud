@@ -9,7 +9,7 @@ git: clean
 	git commit -a -m "$(WHATSNEW)"
 	git push --set-upstream origin HEAD
 
-backend: $(PATH_BACKEND)/names $(PATH_BACKEND)/remove $(PATH_BACKEND)/update $(PATH_BACKEND)/fetch
+backend: $(PATH_BACKEND)/names $(PATH_BACKEND)/remove $(PATH_BACKEND)/update $(PATH_BACKEND)/fetch $(PATH_BACKEND)/create
 
 frontend: $(PATH_FRONTEND)/crud.js $(PATH_FRONTEND)/index.html
 

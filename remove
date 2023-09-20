@@ -31,7 +31,9 @@ def do_execute( name ):
         json.dump( db, fd )
         fd.close()
         response_data['message'] = 'Record removed successfully.'
+        response_data['ret'] = 'SUCCESS'
         
     except:
-        response_data['message'] = 'Could not remove record.'
+        response_data['message'] = 'Could not remove record. Not found.'
+        response_data['ret'] = 'ERROR'
 
