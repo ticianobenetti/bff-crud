@@ -149,7 +149,9 @@ function submitUpdate() {
 	    clearForm();
 	    operation_switch = 'SELECT';
 	    enableButtons();
-	    loadSelect();
+	    if (response.status == 'SUCCESS') {
+		loadSelect();
+	    }
 	});
     
 }
