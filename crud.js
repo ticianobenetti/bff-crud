@@ -13,11 +13,12 @@ var button_remove = document.getElementById("button_remove");
 var button_update = document.getElementById("button_update");
 var p_status = document.getElementById("status");
 var div_progress = document.getElementById("progress");
-var select_name = '';
+var select_name = document.querySelector('#select_name'); // novo
+
+init_DOM();
 
 loadSelect();
 
-init_DOM();
 
 function showProgress() {
     div_progress.style.visibility = 'visible';
@@ -29,20 +30,31 @@ function hideProgress() {
 
 function loadSelect() {
 
+    console.log("loadSelect() chamado");
+    
     // Compose URL
     var names_endpoint = "/api/crud/names"
 
-    var html_select = '<select id="select_name" size="4">';
-
     showProgress();
+
+    // Clear select
+    while ( select_name.options.length ) {
+	console.log("Removing from "+select_name.options.length+": "+select_name.options[0].value)
+	select_name.remove(0);
+    }
+
     axios.get( names_endpoint )
 
 	.then(function (response) {
 	    // handle success
 	    data = response.data;
+	    console.log("Starting foreach");
 	    data['names'].forEach((name) => {
-		html_select += '<option value="'+name+'">'+name+'</option>\n';
+		console.log("Adding "+name)
+		newOption = new Option( name, name ); // novo
+		select_name.add(newOption,undefined); // novo
 	    });
+	    console.log("End foreach");
 	})
 
 	.catch(function (error) { // handle error
@@ -50,13 +62,7 @@ function loadSelect() {
 	})
 
 	.finally(function () { // always executed
-	    
 	    hideProgress();
-	    html_select += '</select>\n';
-	    p_select.innerHTML = html_select;
-	    select_name = document.getElementById("select_name");
-	    select_name.addEventListener( "change", loadRecord );
-	    
 	});
     
     
@@ -72,6 +78,7 @@ function init_DOM() {
     button_create.addEventListener( "click", submitCreate );
     button_remove.addEventListener( "click", submitRemove );
     button_update.addEventListener( "click", submitUpdate );
+    select_name.addEventListener( "change", loadRecord );
     
 }
 
@@ -145,15 +152,11 @@ function submitUpdate() {
 	.finally(function () {
 	    // always executed
 	    hideProgress();
+	    clearForm();
+	    operation_switch = 'SELECT';
+	    enableButtons();
+	    loadSelect();
 	});
-
-    clearForm();
-    operation_switch = 'SELECT';
-    enableButtons();
-    loadSelect();
-    loadSelect();
-    loadSelect();
-    loadSelect();
     
 }
 
@@ -183,13 +186,9 @@ function submitRemove() {
 	.finally(function () {
 	    // always executed
 	    hideProgress();
+	    loadSelect();
+	    clearForm();
 	});
-
-    loadSelect();
-    loadSelect();
-    loadSelect();
-    loadSelect();
-    clearForm();
 }
 
 function submitCreate() {
@@ -197,7 +196,7 @@ function submitCreate() {
     // Compose URL
     var create_endpoint = "/api/crud/create"
     
-    p_status.innerHTML = "Submitting form...<img width=13 src=/images/activity_indicator.gif>";
+    p_status.innerHTML = "Submitting form...";
 
     var form_data = {};
     form_data['name']=input_name.value;
@@ -221,14 +220,11 @@ function submitCreate() {
 	.finally(function () {
 	    // always executed
 	    hideProgress();
+	    clearForm();
+	    operation_switch = 'SELECT';
+	    enableButtons();
+	    loadSelect();
 	});
-
-    clearForm();
-    operation_switch = 'SELECT';
-    enableButtons();
-    loadSelect();
-    loadSelect();
-    
 }
 
 function checkFormCreate() {
