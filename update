@@ -39,6 +39,7 @@ def do_execute(name, new_name, new_age, new_phone):
 
             if new_name in db.keys():
                 response_data['message'] = 'Could not update record. New name already exists.'
+                response_data['status'] = 'ERROR'
 
             else:
                 del db[name]
@@ -47,7 +48,9 @@ def do_execute(name, new_name, new_age, new_phone):
                 json.dump( db, fd )
                 fd.close()
                 response_data['message'] = 'Record updated successfully.'
+                response_data['status'] = 'SUCCESS'
 
     else:
     
         response_data['message'] = 'Could not update record: not found.'
+        response_data['status'] = 'ERROR'
