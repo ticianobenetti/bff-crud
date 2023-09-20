@@ -138,6 +138,9 @@ function submitUpdate() {
 	    p_status.innerHTML = data['message']
 	    if (response.status == 'SUCCESS') {
 		loadSelect();
+		clearForm();
+		operation_switch = 'SELECT';
+		enableButtons();
 	    }
 	})
     
@@ -149,9 +152,6 @@ function submitUpdate() {
 	.finally(function () {
 	    // always executed
 	    hideProgress();
-	    clearForm();
-	    operation_switch = 'SELECT';
-	    enableButtons();
 	});
     
 }
