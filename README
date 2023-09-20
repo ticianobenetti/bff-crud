@@ -1,0 +1,30 @@
+#######################################################################################
+#                         CRUD Backend for Frontend                                   #
+#######################################################################################
+
+DESCRIPTION: Simple Create/Read/Update/Delete in Backend for Frontend Architecture.
+
+####### Frontend made in pure javascript (no CSS), calling backend with Axios. ########
+#
+# index.html - Single page
+# crud.js    - Javascript code
+#
+#######################################################################################
+
+############################# Backend made in Python3 #################################
+#
+# C - Create
+# create: Saves new record to /var/crud/crud.db
+#
+# R - Read
+# names: Loads names (key field) within /var/crud/crud.db
+# fetch: Loads data for a specific name from /var/crud/crud.db
+# 
+# U - Update
+# update: Updates data for a specific name in /var/crud/crud.db
+# 
+# D - Delete
+# remove: Removes record for a specific name from /var/crud/crud.db
+# 
+#######################################################################################
+
