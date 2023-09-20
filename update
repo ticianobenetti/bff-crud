@@ -30,21 +30,22 @@ def do_execute(name, new_name, new_age, new_phone):
 
 
     if name in db.keys():
-
+            
         if name == new_name:
-            db[name]['age'] = new_age
-            db[name]['phone'] = new_phone
+                db[name]['age'] = new_age
+                db[name]['phone'] = new_phone
 
-        else:
-            del db[name]
-            db[new_name] = { 'age':new_age, 'phone':new_phone }
-    
-        fd = open( data_file, 'w' )
-        json.dump( db, fd )
-        fd.close()
-        response_data['message'] = 'Record updated successfully.'
+            else:
+                if new_name in db.keys():
+                    response_data['message'] = 'Could not update record. "'+new_name+'" already exists."
+                else:
+                    del db[name]
+                    db[new_name] = { 'age':new_age, 'phone':new_phone }
+                    fd = open( data_file, 'w' )
+                    json.dump( db, fd )
+                    fd.close()
+                    response_data['message'] = 'Record updated successfully.'
 
     else:
-        
     
-        response_data['message'] = 'Could not update record.'
+        response_data['message'] = 'Could not update record: not found.'
