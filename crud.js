@@ -136,6 +136,9 @@ function submitUpdate() {
 	    // handle sucess	    
 	    data = response.data;
 	    p_status.innerHTML = data['message']
+	    if (response.status == 'SUCCESS') {
+		loadSelect();
+	    }
 	})
     
 	.catch(function (error) {
@@ -149,9 +152,6 @@ function submitUpdate() {
 	    clearForm();
 	    operation_switch = 'SELECT';
 	    enableButtons();
-	    if (response.status == 'SUCCESS') {
-		loadSelect();
-	    }
 	});
     
 }
